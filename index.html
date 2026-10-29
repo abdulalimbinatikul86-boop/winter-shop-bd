@@ -1,0 +1,783 @@
+
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#142d26">
+  <meta name="description" content="Winter Shop BD — আপনার পছন্দের শীতবস্ত্র কিনুন সহজেই।">
+  <title>Winter Shop BD | শীতবস্ত্রের অনলাইন শপ</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --green: #173c30;
+      --green2: #245542;
+      --cream: #faf7f0;
+      --gold: #e7b968;
+      --text: #252c28;
+      --muted: #737a74;
+    }
+
+    body {
+      font-family: Arial, "Noto Sans Bengali", sans-serif;
+      background: var(--cream);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    button, input, select {
+      font: inherit;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+    .topbar {
+      background: #10291f;
+      color: white;
+      text-align: center;
+      padding: 8px;
+      font-size: 13px;
+    }
+
+    header {
+      background: white;
+      padding: 14px 5%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      box-shadow: 0 2px 12px #0000000a;
+    }
+
+    .logo {
+      color: var(--green);
+      font-size: 19px;
+      font-weight: 800;
+      line-height: 1.2;
+    }
+
+    .logo small {
+      display: block;
+      font-size: 10px;
+      color: var(--muted);
+      letter-spacing: 1px;
+    }
+
+    .cart-btn {
+      background: var(--green);
+      color: white;
+      border: 0;
+      border-radius: 24px;
+      padding: 10px 14px;
+      font-weight: bold;
+      white-space: nowrap;
+    }
+
+    .hero {
+      background: linear-gradient(125deg, #16382c, #32624a);
+      color: white;
+      padding: 42px 6% 36px;
+      overflow: hidden;
+    }
+
+    .hero-tag {
+      display: inline-block;
+      color: #ffe0a0;
+      border: 1px solid #ffffff50;
+      border-radius: 20px;
+      padding: 5px 12px;
+      font-size: 12px;
+      margin-bottom: 16px;
+    }
+
+    .hero h1 {
+      font-size: clamp(29px, 7vw, 46px);
+      line-height: 1.35;
+      max-width: 520px;
+      margin-bottom: 12px;
+    }
+
+    .hero p {
+      color: #e3eee7;
+      font-size: 14px;
+      max-width: 420px;
+      margin-bottom: 22px;
+    }
+
+    .primary-btn {
+      display: inline-block;
+      background: var(--gold);
+      color: #172b20;
+      padding: 12px 20px;
+      border: 0;
+      border-radius: 7px;
+      font-weight: bold;
+    }
+
+    .hero-note {
+      margin-top: 18px;
+      font-size: 12px;
+      color: #d7e5dc;
+    }
+
+    .benefits {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+      padding: 20px 5%;
+      background: white;
+    }
+
+    .benefit {
+      background: #f5f4ed;
+      border-radius: 9px;
+      padding: 12px;
+      font-size: 13px;
+      font-weight: bold;
+    }
+
+    .benefit span {
+      display: block;
+      font-size: 11px;
+      font-weight: normal;
+      color: var(--muted);
+    }
+
+    section.products-section {
+      padding: 30px 5%;
+    }
+
+    .section-heading {
+      margin-bottom: 18px;
+    }
+
+    .section-heading h2 {
+      font-size: 23px;
+      color: var(--green);
+    }
+
+    .section-heading p {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .tools {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+      margin-bottom: 18px;
+    }
+
+    .tools input, .tools select {
+      width: 100%;
+      min-width: 0;
+      padding: 11px;
+      border: 1px solid #deded5;
+      background: white;
+      border-radius: 7px;
+      outline-color: var(--green2);
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .product {
+      background: white;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 3px 14px #172b2010;
+      min-width: 0;
+    }
+
+    .product img {
+      display: block;
+      width: 100%;
+      aspect-ratio: 4 / 4.5;
+      object-fit: cover;
+      background: #eae7df;
+    }
+
+    .product-info {
+      padding: 11px;
+    }
+
+    .category {
+      color: var(--green2);
+      font-size: 11px;
+    }
+
+    .product h3 {
+      font-size: 15px;
+      margin: 3px 0;
+    }
+
+    .description {
+      font-size: 11px;
+      color: var(--muted);
+      margin-bottom: 7px;
+    }
+
+    .price {
+      font-weight: bold;
+      color: var(--green);
+      font-size: 17px;
+      margin-bottom: 9px;
+    }
+
+    .old-price {
+      font-size: 11px;
+      color: #999;
+      text-decoration: line-through;
+      margin-left: 4px;
+      font-weight: normal;
+    }
+
+    .add-btn {
+      width: 100%;
+      border: 0;
+      border-radius: 6px;
+      padding: 10px 5px;
+      background: var(--green);
+      color: white;
+      font-size: 12px;
+      font-weight: bold;
+    }
+
+    .empty {
+      display: none;
+      padding: 24px 0;
+      color: var(--muted);
+      text-align: center;
+      grid-column: 1 / -1;
+    }
+
+    .order-section {
+      background: #e9eee6;
+      padding: 30px 5%;
+    }
+
+    .order-section h2 {
+      color: var(--green);
+      font-size: 22px;
+      margin-bottom: 6px;
+    }
+
+    .order-section p {
+      font-size: 13px;
+      color: #59665d;
+      margin-bottom: 15px;
+    }
+
+    .order-box {
+      background: white;
+      padding: 18px;
+      border-radius: 10px;
+    }
+
+    .cart-list {
+      font-size: 13px;
+      margin-bottom: 12px;
+    }
+
+    .cart-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      padding: 8px 0;
+      border-bottom: 1px solid #eee;
+    }
+
+    .cart-row button {
+      border: 0;
+      background: #f5e7e2;
+      color: #8c3426;
+      border-radius: 5px;
+      padding: 4px 8px;
+    }
+
+    .total {
+      font-weight: bold;
+      font-size: 17px;
+      margin: 12px 0;
+    }
+
+    .form-field {
+      margin-top: 12px;
+    }
+
+    .form-field label {
+      display: block;
+      font-size: 13px;
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+
+    .form-field input, .form-field select {
+      width: 100%;
+      padding: 11px;
+      border: 1px solid #deded5;
+      border-radius: 6px;
+      background: white;
+    }
+
+    .submit-btn {
+      width: 100%;
+      background: var(--green);
+      color: white;
+      border: 0;
+      border-radius: 7px;
+      padding: 13px;
+      font-weight: bold;
+      margin-top: 16px;
+    }
+
+    .notice {
+      font-size: 11px !important;
+      margin-top: 10px;
+    }
+
+    footer {
+      background: #10291f;
+      color: white;
+      text-align: center;
+      padding: 25px 5%;
+      font-size: 12px;
+    }
+
+    footer p {
+      margin: 5px 0;
+      color: #d7e5dc;
+    }
+
+    .footer-links {
+      margin-top: 12px;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 15px;
+    }
+
+    @media (min-width: 650px) {
+      .hero {
+        padding: 65px 9%;
+      }
+
+      .benefits {
+        grid-template-columns: repeat(4, 1fr);
+        padding-left: 9%;
+        padding-right: 9%;
+      }
+
+      section.products-section, .order-section {
+        padding: 45px 9%;
+      }
+
+      .tools {
+        grid-template-columns: 2fr 1fr;
+      }
+
+      .grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 20px;
+      }
+
+      .product-info {
+        padding: 15px;
+      }
+
+      .order-box {
+        max-width: 600px;
+      }
+    }
+
+    @media (min-width: 950px) {
+      .grid {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="topbar">
+    ❄️ শীতের নতুন কালেকশন দেখুন — Winter Shop BD
+  </div>
+
+  <header>
+    <a href="#" class="logo">
+      WINTER SHOP BD
+      <small>YOUR WINTER, YOUR STYLE</small>
+    </a>
+
+    <button class="cart-btn" onclick="goToCart()">
+      🛒 কার্ট (<span id="cartCount">0</span>)
+    </button>
+  </header>
+
+  <main>
+    <section class="hero">
+      <span class="hero-tag">❄ WINTER COLLECTION</span>
+      <h1>শীত হোক আরামদায়ক, স্টাইল হোক অনন্য!</h1>
+      <p>
+        আপনার পছন্দের জ্যাকেট, হুডি ও সোয়েটার
+        কিনুন সহজেই। শীতের জন্য প্রস্তুত হোন আজই।
+      </p>
+      <a href="#products" class="primary-btn">
+        কালেকশন দেখুন →
+      </a>
+      <div class="hero-note">
+        ✦ আপনার পছন্দের শীতবস্ত্র এক জায়গায়
+      </div>
+    </section>
+
+    <section class="benefits">
+      <div class="benefit">
+        🚚 ডেলিভারি সুবিধা
+        <span>অর্ডার অনুযায়ী ডেলিভারি</span>
+      </div>
+      <div class="benefit">
+        💳 সহজ পেমেন্ট
+        <span>ক্যাশ অন ডেলিভারি অপশন</span>
+      </div>
+      <div class="benefit">
+        🧥 শীতের কালেকশন
+        <span>বিভিন্ন ধরনের শীতবস্ত্র</span>
+      </div>
+      <div class="benefit">
+        📱 সহজ অর্ডার
+        <span>মোবাইল থেকেই কেনাকাটা</span>
+      </div>
+    </section>
+
+    <section class="products-section" id="products">
+      <div class="section-heading">
+        <h2>আমাদের শীতের কালেকশন</h2>
+        <p>আপনার পছন্দের পণ্যটি খুঁজে নিন</p>
+      </div>
+
+      <div class="tools">
+        <input
+          id="search"
+          type="search"
+          placeholder="পণ্যের নাম লিখে খুঁজুন..."
+          aria-label="পণ্য খুঁজুন"
+        >
+
+        <select id="category" aria-label="ক্যাটাগরি নির্বাচন">
+          <option value="all">সব পণ্য</option>
+          <option value="জ্যাকেট">জ্যাকেট</option>
+          <option value="হুডি">হুডি</option>
+          <option value="সোয়েটার">সোয়েটার</option>
+          <option value="মাফলার">মাফলার ও টুপি</option>
+        </select>
+      </div>
+
+      <div class="grid" id="productGrid">
+        <article class="product" data-name="উইন্টার জ্যাকেট" data-category="জ্যাকেট">
+          <img src="https://images.unsplash.com/photo-1551028719-00167b16eac5?auto=format&fit=crop&w=600&q=80" alt="জ্যাকেট" loading="lazy">
+          <div class="product-info">
+            <span class="category">জ্যাকেট</span>
+            <h3>উইন্টার জ্যাকেট</h3>
+            <p class="description">শীতের জন্য আরামদায়ক ডিজাইন</p>
+            <div class="price">৳ ১,২৫০</div>
+            <button class="add-btn" onclick="addToCart('উইন্টার জ্যাকেট',1250)">
+              + কার্টে যোগ করুন
+            </button>
+          </div>
+        </article>
+
+        <article class="product" data-name="ক্যাজুয়াল হুডি" data-category="হুডি">
+          <img src="https://images.unsplash.com/photo-1556821840-3a63f95609a7?auto=format&fit=crop&w=600&q=80" alt="হুডি" loading="lazy">
+          <div class="product-info">
+            <span class="category">হুডি</span>
+            <h3>ক্যাজুয়াল হুডি</h3>
+            <p class="description">দৈনন্দিন ব্যবহারের জন্য</p>
+            <div class="price">৳ ৭৫০</div>
+            <button class="add-btn" onclick="addToCart('ক্যাজুয়াল হুডি',750)">
+              + কার্টে যোগ করুন
+            </button>
+          </div>
+        </article>
+
+        <article class="product" data-name="উলের সোয়েটার" data-category="সোয়েটার">
+          <img src="https://images.unsplash.com/photo-1576566588028-4147f3842f27?auto=format&fit=crop&w=600&q=80" alt="সোয়েটার" loading="lazy">
+          <div class="product-info">
+            <span class="category">সোয়েটার</span>
+            <h3>উলের সোয়েটার</h3>
+            <p class="description">আরাম ও উষ্ণতার সমন্বয়</p>
+            <div class="price">৳ ৬৫০</div>
+            <button class="add-btn" onclick="addToCart('উলের সোয়েটার',650)">
+              + কার্টে যোগ করুন
+            </button>
+          </div>
+        </article>
+
+        <article class="product" data-name="শীতের মাফলার" data-category="মাফলার">
+          <img src="https://images.unsplash.com/photo-1601924994987-69e26d50dc26?auto=format&fit=crop&w=600&q=80" alt="শীতের মাফলার" loading="lazy">
+          <div class="product-info">
+            <span class="category">মাফলার ও টুপি</span>
+            <h3>শীতের মাফলার</h3>
+            <p class="description">শীতের দিনে বাড়তি আরাম</p>
+            <div class="price">৳ ২৫০</div>
+            <button class="add-btn" onclick="addToCart('শীতের মাফলার',250)">
+              + কার্টে যোগ করুন
+            </button>
+          </div>
+        </article>
+      </div>
+
+      <p id="emptyMessage" class="empty">
+        দুঃখিত, এই নামে কোনো পণ্য পাওয়া যায়নি।
+      </p>
+    </section>
+
+    <section class="order-section" id="order">
+      <h2>আপনার অর্ডার</h2>
+      <p>পণ্য বাছাই করে নিচে আপনার ডেলিভারির তথ্য দিন।</p>
+
+      <div class="order-box" id="cartBox">
+        <h3>🛒 আপনার কার্ট</h3>
+        <div id="cartItems" class="cart-list">
+          আপনার কার্টে এখনো কোনো পণ্য নেই।
+        </div>
+
+        <div class="total">
+          মোট: ৳ <span id="cartTotal">0</span>
+        </div>
+
+        <form id="checkoutForm">
+          <div class="form-field">
+            <label for="customerName">আপনার নাম *</label>
+            <input id="customerName" name="customerName" required maxlength="80" placeholder="সম্পূর্ণ নাম">
+          </div>
+
+          <div class="form-field">
+            <label for="phone">মোবাইল নম্বর *</label>
+            <input id="phone" name="phone" type="tel" required maxlength="20" pattern="[0-9+ -]{8,20}" placeholder="01XXXXXXXXX">
+          </div>
+
+          <div class="form-field">
+            <label for="address">সম্পূর্ণ ডেলিভারি ঠিকানা *</label>
+            <input id="address" name="address" required maxlength="250" placeholder="বাড়ি, রাস্তা, এলাকা, জেলা">
+          </div>
+
+          <div class="form-field">
+            <label for="payment">পেমেন্ট পদ্ধতি</label>
+            <select id="payment" name="payment">
+              <option value="ক্যাশ অন ডেলিভারি">ক্যাশ অন ডেলিভারি</option>
+            </select>
+          </div>
+
+          <button type="submit" class="submit-btn">
+            অর্ডার জমা দিন
+          </button>
+
+          <p class="notice">
+            পরীক্ষামূলক সংস্করণ: এই ফর্ম এখনো অনলাইনে
+            অর্ডার সংরক্ষণ বা দোকানিকে পাঠায় না।
+          </p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <h3>WINTER SHOP BD</h3>
+    <p>আপনার শীতের কেনাকাটার সহজ ঠিকানা</p>
+    <div class="footer-links">
+      <a href="#products">পণ্যসমূহ</a>
+      <a href="#order">অর্ডার</a>
+      <a href="#" id="facebookLink">Facebook পেজ</a>
+    </div>
+    <p style="margin-top:16px">© <span id="year"></span> Winter Shop BD</p>
+  </footer>
+
+  <script>
+    const cart = [];
+
+    const money = amount =>
+      new Intl.NumberFormat("en-US").format(amount);
+
+    function addToCart(name, price) {
+      const existing = cart.find(item => item.name === name);
+
+      if (existing) {
+        existing.quantity += 1;
+      } else {
+        cart.push({ name, price, quantity: 1 });
+      }
+
+      renderCart();
+      alert(name + " কার্টে যোগ হয়েছে।");
+    }
+
+    function changeQuantity(name, change) {
+      const item = cart.find(product => product.name === name);
+
+      if (!item) return;
+
+      item.quantity += change;
+
+      if (item.quantity <= 0) {
+        const index = cart.indexOf(item);
+        cart.splice(index, 1);
+      }
+
+      renderCart();
+    }
+
+    function renderCart() {
+      const count = cart.reduce(
+        (sum, item) => sum + item.quantity, 0
+      );
+
+      const total = cart.reduce(
+        (sum, item) => sum + item.price * item.quantity, 0
+      );
+
+      document.getElementById("cartCount").textContent = count;
+      document.getElementById("cartTotal").textContent = money(total);
+
+      const container = document.getElementById("cartItems");
+
+      if (cart.length === 0) {
+        container.textContent = "আপনার কার্টে এখনো কোনো পণ্য নেই।";
+        return;
+      }
+
+      container.replaceChildren();
+
+      cart.forEach(item => {
+        const row = document.createElement("div");
+        row.className = "cart-row";
+
+        const label = document.createElement("span");
+        label.textContent =
+          item.name + " × " + item.quantity +
+          " = ৳ " + money(item.price * item.quantity);
+
+        const controls = document.createElement("span");
+
+        const minus = document.createElement("button");
+        minus.type = "button";
+        minus.textContent = "−";
+        minus.setAttribute("aria-label", item.name + " কমান");
+        minus.addEventListener("click", () =>
+          changeQuantity(item.name, -1)
+        );
+
+        const plus = document.createElement("button");
+        plus.type = "button";
+        plus.textContent = "+";
+        plus.setAttribute("aria-label", item.name + " বাড়ান");
+        plus.addEventListener("click", () =>
+          changeQuantity(item.name, 1)
+        );
+
+        controls.append(minus, " ", plus);
+        row.append(label, controls);
+        container.append(row);
+      });
+    }
+
+    function goToCart() {
+      document.getElementById("order").scrollIntoView({
+        behavior: "smooth"
+      });
+    }
+
+    function filterProducts() {
+      const search =
+        document.getElementById("search").value.trim().toLowerCase();
+
+      const category =
+        document.getElementById("category").value;
+
+      let visible = 0;
+
+      document.querySelectorAll(".product").forEach(product => {
+        const name = product.dataset.name.toLowerCase();
+        const matchesSearch = name.includes(search);
+        const matchesCategory =
+          category === "all" ||
+          product.dataset.category === category;
+
+        const show = matchesSearch && matchesCategory;
+
+        product.style.display = show ? "" : "none";
+
+        if (show) visible++;
+      });
+
+      document.getElementById("emptyMessage").style.display =
+        visible === 0 ? "block" : "none";
+    }
+
+    document.getElementById("search").addEventListener(
+      "input", filterProducts
+    );
+
+    document.getElementById("category").addEventListener(
+      "change", filterProducts
+    );
+
+    document.getElementById("checkoutForm").addEventListener(
+      "submit", function(event) {
+        event.preventDefault();
+
+        if (cart.length === 0) {
+          alert("প্রথমে অন্তত একটি পণ্য কার্টে যোগ করুন।");
+          return;
+        }
+
+        alert(
+          "এটি এখনো পরীক্ষামূলক ওয়েবসাইট। " +
+          "অর্ডার জমা হয়নি। পরবর্তী ধাপে নিরাপদ " +
+          "অর্ডার ব্যবস্থা যুক্ত করা হবে।"
+        );
+      }
+    );
+
+    document.getElementById("year").textContent =
+      new Date().getFullYear();
+
+    // আপনার আসল Facebook পেজের লিংক পরে বসাবেন।
+    const FACEBOOK_PAGE_URL = "";
+
+    if (FACEBOOK_PAGE_URL) {
+      document.getElementById("facebookLink").href =
+        FACEBOOK_PAGE_URL;
+      document.getElementById("facebookLink").target = "_blank";
+      document.getElementById("facebookLink").rel =
+        "noopener noreferrer";
+    } else {
+      document.getElementById("facebookLink").addEventListener(
+        "click", event => {
+          event.preventDefault();
+          alert("পরবর্তী ধাপে আপনার Facebook পেজের লিংক যুক্ত করুন।");
+        }
+      );
+    }
+  </script>
+</body>
+</html>
